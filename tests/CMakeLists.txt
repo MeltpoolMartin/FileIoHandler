@@ -12,11 +12,11 @@ target_link_libraries(${PROJECT_NAME}
         ${CONAN_LIBS}
 )
 
-add_test(
-    NAME
-        unit
-    WORKING_DIRECTORY 
-        ${CMAKE_BINARY_DIR}/lib/tests
-    COMMAND 
-        ${PROJECT_NAME}
-  )
+# add_test(
+#     NAME
+#         unit
+#     WORKING_DIRECTORY 
+#         ${CMAKE_BINARY_DIR}/bin
+#     COMMAND 
+#         ${PROJECT_NAME}
+#   )

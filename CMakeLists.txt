@@ -7,7 +7,7 @@ project(FileIoHandler
 
 if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    conan_basic_setup(TARGETS)
+    CONAN_BASIC_SETUP()
 endif()
 
 add_subdirectory(src)
