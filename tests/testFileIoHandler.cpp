@@ -10,7 +10,7 @@ TEST(FileIOHandlerTest, Read_ReadWithInvalidPath_CanNotRead) {
 }
 
 TEST(FileIOHandlerTest, Read_ReadWithValidTextFile_HasValue) {
-    std::string validPath = "../../tests/data/text_file.txt";
+    std::string validPath = "tests/data/text_file.txt";
     std::string expectdData = "This is a text file.";
 
     FileIoHandler fh(validPath);
@@ -21,7 +21,7 @@ TEST(FileIOHandlerTest, Read_ReadWithValidTextFile_HasValue) {
 }
 
 TEST(FileIOHandlerTest, Read_ReadWithEmptyTextFile_HasNoValue) {
-    std::string validPath = "../../tests/data/empty_text_file.txt";
+    std::string validPath = "tests/data/empty_text_file.txt";
 
     FileIoHandler fh(validPath);
     std::optional<std::string> readResult = fh.read();
@@ -30,7 +30,7 @@ TEST(FileIOHandlerTest, Read_ReadWithEmptyTextFile_HasNoValue) {
 }
 
 TEST(FileIOHandlerTest, Write_WriteTxtFile_WriteSucceeded) {
-    std::string writeFilePath = "../../tests/data/write_text_file.txt";
+    std::string writeFilePath = "tests/data/write_text_file.txt";
     std::string data = "This is a test.";
 
     FileIoHandler fh(writeFilePath);
