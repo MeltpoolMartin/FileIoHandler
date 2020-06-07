@@ -1,3 +1,5 @@
+#include <sstream>
+#include <stdexcept>
 #include "FileIoHandler.hpp"
 
 namespace fs = std::filesystem;
@@ -17,7 +19,7 @@ FileIoHandler::~FileIoHandler() {
 std::optional<std::string> FileIoHandler::read() {
     if(fs::exists(m_FilePath)) {
         m_Stream.open(m_FilePath, std::ios::in);
-        if(!m_Stream) {
+        if(!m_Stream.is_open()) {
             return {};
         }
         else {
@@ -25,7 +27,13 @@ std::optional<std::string> FileIoHandler::read() {
             std::ostringstream ss;
             ss << m_Stream.rdbuf();
             data = ss.str();
-            return data;
+            if(data.empty()) {
+                return {};
+            }
+            else {
+                return data;
+            }
+
         }
     }
     else {
