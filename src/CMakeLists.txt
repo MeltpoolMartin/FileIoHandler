@@ -14,4 +14,4 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_SOURCE_DIR}/include
 )
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
