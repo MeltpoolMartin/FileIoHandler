@@ -1,9 +1,12 @@
 #include "FileIoHandler.hpp"
 
+namespace fs = std::filesystem;
 
 FileIoHandler::FileIoHandler(std::string& filePath) :
 m_FilePath(filePath)
 {
+    m_FilePath = filePath;
+    std::ifstream m_Stream;
 }
 
 FileIoHandler::~FileIoHandler() {
@@ -11,14 +14,21 @@ FileIoHandler::~FileIoHandler() {
 }
 
 
-std::string FileIoHandler::read() {
-    std::ifstream m_Stream(m_FilePath);
-    if(!m_Stream.is_open()) {
-        throw std::invalid_argument("File path could not be opened");
+std::optional<std::string> FileIoHandler::read() {
+    if(fs::exists(m_FilePath)) {
+        m_Stream.open(m_FilePath, std::ios::in);
+        if(!m_Stream) {
+            return {};
+        }
+        else {
+            std::string data;
+            std::ostringstream ss;
+            ss << m_Stream.rdbuf();
+            data = ss.str();
+            return data;
+        }
     }
     else {
-        std::string readData;
-        m_Stream >> readData;
-        return readData;
+        throw std::invalid_argument("File does not exit");
     }
 }
