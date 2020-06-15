@@ -3,8 +3,12 @@ cmake_minimum_required(VERSION 3.16.3)
 project(testfio LANGUAGES CXX)
 
 add_executable(testfio
-    main.cpp
     testFileIoHandler.cpp
+)
+
+set_target_properties(${PROJECT_NAME}
+  PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/test"
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -13,11 +17,4 @@ target_link_libraries(${PROJECT_NAME}
         ${CONAN_LIBS}
 )
 
-# add_test(
-#     NAME
-#         unit
-#     WORKING_DIRECTORY 
-#         ${CMAKE_BINARY_DIR}/bin
-#     COMMAND 
-#         ${PROJECT_NAME}
-#   )
+gtest_discover_tests(${PROJECT_NAME})

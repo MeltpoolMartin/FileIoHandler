@@ -5,9 +5,6 @@ project(FileIoHandler
     LANGUAGES CXX
 )
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
 if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     CONAN_BASIC_SETUP()
@@ -15,5 +12,10 @@ endif()
 
 add_subdirectory(src)
 
-add_subdirectory(tests)
-enable_testing()
+option(PACKAGE_TESTS "Build unit tests" ON)
+if(PACKAGE_TESTS)
+    message("Build unit tests")
+    enable_testing()
+    include(GoogleTest)
+    add_subdirectory(tests)
+endif()
