@@ -7,14 +7,14 @@ add_executable(testfio
 )
 
 set_target_properties(${PROJECT_NAME}
-  PROPERTIES
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/test"
+	PROPERTIES
+		RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/test"
 )
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         fio
-        ${CONAN_LIBS}
+        CONAN_PKG::gtest
 )
 
 gtest_discover_tests(${PROJECT_NAME})
