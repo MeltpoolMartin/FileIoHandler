@@ -23,6 +23,9 @@ else()
     message("No conanbuildinfo.cmake file found")
 endif()
 
+#Add CMake macros and functions
+include(${CMAKE_SOURCE_DIR}/cmake/deploy_test_files.cmake)
+
 add_subdirectory(src)
 
 option(PACKAGE_TESTS "Build unit tests" ON)
