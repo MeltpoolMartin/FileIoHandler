@@ -13,4 +13,4 @@ conan install -g cmake_multi -s build_type=Release ..
 conan install -g cmake_multi -s build_type=Debug  ..
 
 echo "Configure project with CMake"
-cmake -G "Xcode" ..
+cmake -G "Xcode" --graphviz=FileIoHandlerDependencyGraph.dot ..
