@@ -8,6 +8,6 @@ if [ ! -d "$buildDir" ]; then
 fi
 
 cd ./build
-conan install -s build_type=Release ..
+conan install -s build_type=Release -s compiler=gcc -s compiler.libcxx=libstdc++11 ..
 cmake -G "Unix Makefiles" ..
-cmake --build . --verbose
+cmake --build . --verbose --config Release

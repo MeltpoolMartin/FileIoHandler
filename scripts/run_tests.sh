@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file="./build/bin/testfio"
+file="./build/bin/test/testfio"
 
 if [ -x "$file" ]; then
     "$file"

@@ -5,15 +5,30 @@ project(FileIoHandler
     LANGUAGES CXX
 )
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
+    message("conanbuildinfo_multi.cmake file found")
+    include(${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
+    #'NO_OUTPUT_DIRS' = Do not adjust the build output directories
+    CONAN_BASIC_SETUP(
+        TARGETS
+    )
+elseif(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    message("conanbuildinfo.cmake file found")
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    CONAN_BASIC_SETUP()
+    #'NO_OUTPUT_DIRS' = Do not adjust the build output directories
+    CONAN_BASIC_SETUP(
+        TARGETS
+    )
+else()
+    message("No conanbuildinfo.cmake file found")
 endif()
 
 add_subdirectory(src)
 
-add_subdirectory(tests)
-enable_testing()
+option(PACKAGE_TESTS "Build unit tests" ON)
+if(PACKAGE_TESTS)
+    message("Build unit tests")
+    enable_testing()
+    include(GoogleTest)
+    add_subdirectory(tests)
+endif()
