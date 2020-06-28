@@ -1,7 +1,7 @@
 #include "FileIoHandler.hpp"
 #include "gtest/gtest.h"
 
-TEST(FileIOHandlerTest, Read_ReadWithInvalidPath_CanNotRead) {
+TEST(FileIOHandlerTest, Read_ReadWithInvalidPath_ThrowException) {
   std::string invalidPath = "";
 
   FileIoHandler fh(invalidPath);
