@@ -5,7 +5,10 @@ include(${CMAKE_SOURCE_DIR}/cmake/deploy_test_files.cmake)
 
 #Get actual FileIoHandler version from version.hpp file
 include(${CMAKE_SOURCE_DIR}/cmake/file_io_handler_version.cmake)
-get_file_io_handler_version(FIOH_VERSION_PLAIN)
+get_file_io_handler_version(
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/version.hpp"
+    FIOH_VERSION_PLAIN
+)
 
 project(FileIoHandler
     VERSION
