@@ -21,6 +21,7 @@ pipeline {
     }
     post {
         always {
+            junit '**/reports/junit/*.xml'
             deleteDir()
         }
     }
