@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(testfio LANGUAGES CXX)
+project(testfioh
+    LANGUAGES 
+        CXX
+)
 
-add_executable(testfio
+add_executable(testfioh
     ${CMAKE_CURRENT_SOURCE_DIR}/testFileIoHandler.cpp
 )
 
@@ -13,7 +16,7 @@ set_target_properties(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-        fio
+        fioh
         CONAN_PKG::gtest
 )
 

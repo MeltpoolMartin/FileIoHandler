@@ -1,8 +1,17 @@
 cmake_minimum_required(VERSION 3.16.3)
 
+#Add CMake macros and functions
+include(${CMAKE_SOURCE_DIR}/cmake/deploy_test_files.cmake)
+
+#Get actual FileIoHandler version from version.hpp file
+include(${CMAKE_SOURCE_DIR}/cmake/file_io_handler_version.cmake)
+get_file_io_handler_version(FIOH_VERSION_PLAIN)
+
 project(FileIoHandler
-    VERSION 0.1
-    LANGUAGES CXX
+    VERSION
+        ${FIOH_VERSION_PLAIN}
+    LANGUAGES
+        CXX
 )
 
 if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo_multi.cmake)
@@ -23,8 +32,6 @@ else()
     message("No conanbuildinfo.cmake file found")
 endif()
 
-#Add CMake macros and functions
-include(${CMAKE_SOURCE_DIR}/cmake/deploy_test_files.cmake)
 
 add_subdirectory(src)
 
